@@ -20,17 +20,10 @@ resource "aws_security_group" "ec2_sg" {
   }
 
   egress {
-<<<<<<< HEAD
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
-=======
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
->>>>>>> 3fafd660f12b2dc3d92f7e50bd1f69b0660da624
 
   }
 }
