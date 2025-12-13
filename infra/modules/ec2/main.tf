@@ -34,7 +34,7 @@ resource "aws_key_pair" "main" {
   #.pem file location
 }
 
-resource "aws_instance" "app.ec2" {
+resource "aws_instance" "app_ec2" {
   ami                    = var.ami
   instance_type          = var.instance_type
   subnet_id              = var.subnet_id
