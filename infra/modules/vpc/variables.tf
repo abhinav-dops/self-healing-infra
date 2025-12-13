@@ -6,7 +6,7 @@ variable "subnet_cidr" {
   description = "Subnets cidr block"
   default     = "10.0.1.0/24"
 }
-variable "availability_zone" {
+variable "az" {
   description = "Availability zone"
   default     = "ap-south-1a"
 }
