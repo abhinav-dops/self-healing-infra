@@ -6,3 +6,4 @@ terraform.tfstate*
 .terraform/
 venv/
 .DS_Store
+infra/keys/selfhealing-key
