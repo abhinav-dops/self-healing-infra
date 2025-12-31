@@ -11,10 +11,6 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   dimensions = {
     InstanceId = aws_instance.app_ec2.id
   }
-
-  alarm_actions = [aws_sns_topic.selfhealing.arn]
-
-  alarm_description = "Trigger when cpu exceeds 80%"
 }
 
 resource "aws_cloudwatch_metric_alarm" "ec2_status_failed" {
@@ -30,8 +26,5 @@ resource "aws_cloudwatch_metric_alarm" "ec2_status_failed" {
   dimensions = {
     InstanceId = aws_instance.app_ec2.id
   }
-  alarm_actions = [aws_sns_topic.selfhealing.arn]
-
-  alarm_description = "Trigger When Ec2 system status check fails"
 }
 
