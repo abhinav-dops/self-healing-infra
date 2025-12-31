@@ -96,7 +96,7 @@ self-healing-infra/
 ```
 ---
 
-##Testing the Self-Healing Mechanism
+## Testing the Self-Healing Mechanism
 
 1. SSH into the EC2 instance
 2. Generate CPU load:
@@ -112,7 +112,7 @@ self-healing-infra/
 
 ---
 
-##Key Learnings
+## Key Learnings
 
 - Implementing event-driven remediation using AWS services
 - Designing fault-tolerant infrastructure
@@ -126,6 +126,7 @@ self-healing-infra/
 ```test
 - terraform destroy
 ```
+
 
 
 
