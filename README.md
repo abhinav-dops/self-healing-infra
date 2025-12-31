@@ -54,22 +54,25 @@ This project focuses on **infrastructure resilience**, **event-driven automation
 
 ## Project Structure
 
+```text
 self-healing-infra/
 ├── infra/
-│ ├── modules/
-│ │ └── ec2/
-│ │ ├── cloudwatch.tf
-│ │ ├── eventbridge.tf
-│ │ ├── lambda.tf
-│ │ ├── lambda_iam.tf
-│ │ └── lambda/
-│ │ ├── reboot_ec2.py
-│ │ └── function.zip
-│ ├── user-data/
-│ │ └── install_docker.sh
-│ ├── main.tf
-│ ├── variables.tf
-│ └── outputs.tf
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   ├── terraform.tfvars
+│   ├── modules/
+│   │   └── ec2/
+│   │       ├── main.tf
+│   │       ├── cloudwatch.tf
+│   │       ├── eventbridge.tf
+│   │       ├── lambda.tf
+│   │       ├── lambda_iam.tf
+│   │       └── lambda/
+│   │           ├── reboot_ec2.py
+│   │           └── function.zip
+│   └── user-data/
+│       └── install_docker.sh
 ├── Dockerfile
 └── README.md
 
@@ -108,4 +111,5 @@ self-healing-infra/
  -Alarms return to OK
 
 ---
+
 
