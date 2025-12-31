@@ -1,33 +1,111 @@
-# Self-Healing Cloud Infrastructure (AWS + Docker + Terraform)
+# Self-Healing EC2 Infrastructure (AWS + Terraform)
 
-A cloud-native system that detects failures and automatically recovers using Dockerized apps, AWS EC2, CloudWatch alarms, and automation workflows.
+## Overview
 
----
+This project demonstrates a **self-healing cloud infrastructure** on AWS where an EC2 instance is automatically monitored and recovered from failure conditions without manual intervention.
 
-## 🚀 Current Progress (Week 1)
-- Built a minimal Flask app (`/` + `/health`)
-- Dockerized the app and tested locally
-- Set up AWS CLI + IAM user
-- Launched EC2 and installed Docker
-- Deployed container manually + verified public access
-- Docker image pushed to Docker Hub for consistent deployment
+The system detects high CPU usage or EC2 system health failures using Amazon CloudWatch, triggers automated remediation via AWS Lambda, and restores the instance by rebooting it. The application running inside Docker is automatically recovered after reboot.
+
+This project focuses on **infrastructure resilience**, **event-driven automation**, and **real-world DevOps practices**.
 
 ---
 
-## 🔧 Quick Commands
+## Architecture
 
-```bash
-# Local build & run
-docker build -t self-healing-app .
-docker run -p 8080:8080 self-healing-app
+**Flow:**
 
-# Push to Docker Hub
-docker tag self-healing-app <dockerhub-username>/self-healing-app
-docker push <dockerhub-username>/self-healing-app
+1. EC2 instance runs a Dockerized web application  
+2. CloudWatch monitors:
+   - CPU utilization
+   - EC2 system health status  
+3. When a threshold is breached:
+   - CloudWatch Alarm enters `ALARM` state  
+4. EventBridge captures the alarm state change  
+5. EventBridge invokes an AWS Lambda function  
+6. Lambda reboots the affected EC2 instance  
+7. Docker container restarts automatically  
+8. System returns to healthy state  
 
-# EC2 deploy (from Docker Hub)
-docker pull <dockerhub-username>/self-healing-app
-docker run -d -p 80:8080 <dockerhub-username>/self-healing-app
+---
 
-# Logs (EC2)
-docker logs -f selfhealing
+## Technologies Used
+
+- **AWS EC2** – Compute instance  
+- **AWS CloudWatch** – Metrics, alarms, and logs  
+- **AWS EventBridge** – Event-driven automation  
+- **AWS Lambda** – Automated remediation  
+- **Terraform** – Infrastructure as Code  
+- **Docker** – Application containerization  
+- **Amazon Linux 2023**
+
+---
+
+## Features
+
+- Automatic detection of high CPU usage  
+- Automatic detection of EC2 system health failures  
+- Event-driven remediation using Lambda  
+- Fully automated EC2 reboot  
+- Docker application auto-recovery after reboot  
+- CloudWatch logging for observability  
+- Reproducible infrastructure using Terraform modules  
+
+---
+
+## Project Structure
+
+self-healing-infra/
+├── infra/
+│ ├── modules/
+│ │ └── ec2/
+│ │ ├── cloudwatch.tf
+│ │ ├── eventbridge.tf
+│ │ ├── lambda.tf
+│ │ ├── lambda_iam.tf
+│ │ └── lambda/
+│ │ ├── reboot_ec2.py
+│ │ └── function.zip
+│ ├── user-data/
+│ │ └── install_docker.sh
+│ ├── main.tf
+│ ├── variables.tf
+│ └── outputs.tf
+├── Dockerfile
+└── README.md
+
+---
+
+## How It Works
+
+- CloudWatch alarms continuously monitor EC2 metrics.
+- When an alarm enters the `ALARM` state, EventBridge listens for the state change event.
+- EventBridge triggers a Lambda function.
+- Lambda reads the EC2 instance ID from environment variables and initiates a reboot.
+- After reboot, Docker automatically restarts the application container.
+- CloudWatch alarms return to `OK` once the system stabilizes.
+
+---
+
+## Deployment
+
+- terraform init
+- terraform apply
+
+---
+
+##Testing the Self-Healing Mechanism
+
+1. SSH into the EC2 instance
+2. Generate CPU load:
+  -yes > /dev/null &
+
+3. Observe:
+ -CloudWatch alarm transitions to ALARM
+ -EC2 reboots automatically
+ -SSH session disconnects
+ -Lambda logs appear in CloudWatch
+ -Application becomes available again after reboot
+ -Alarms return to OK
+
+---
+
