@@ -75,7 +75,7 @@ self-healing-infra/
 │       └── install_docker.sh
 ├── Dockerfile
 └── README.md
-
+```
 ---
 
 ## How It Works
@@ -90,10 +90,10 @@ self-healing-infra/
 ---
 
 ## Deployment
-
+```test
 - terraform init
 - terraform apply
-
+```
 ---
 
 ##Testing the Self-Healing Mechanism
@@ -111,5 +111,22 @@ self-healing-infra/
  -Alarms return to OK
 
 ---
+
+##Key Learnings
+
+- Implementing event-driven remediation using AWS services
+- Designing fault-tolerant infrastructure
+- Understanding the difference between infrastructure recovery and application recovery
+- Debugging real AWS event chains (CloudWatch → EventBridge → Lambda → EC2)
+- Using Terraform modules for clean and scalable infrastructure
+
+---
+
+##Cleanup
+```test
+- terraform destroy
+```
+
+
 
 
