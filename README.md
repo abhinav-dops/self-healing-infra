@@ -112,6 +112,23 @@ self-healing-infra/
 
 ---
 
+## Self-Healing Workflow Screenshots
+
+The following screenshots demonstrate the complete self-healing lifecycle:
+
+1. Initial healthy state of EC2 and alarms
+2. Application running normally
+3. Artificial CPU stress introduced
+4. CloudWatch alarm transitions to ALARM
+5. Event-driven EC2 reboot triggered
+6. Instance recovery and Docker container restart
+7. Application restored
+8. Alarms return to OK
+
+Screenshots are available in the [`screenshots/`](./screenshots) directory.
+
+---
+
 ## Key Learnings
 
 - Implementing event-driven remediation using AWS services
@@ -126,6 +143,7 @@ self-healing-infra/
 ```test
 - terraform destroy
 ```
+
 
 
 
