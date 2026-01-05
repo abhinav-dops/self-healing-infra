@@ -58,9 +58,3 @@ docker-compose.override.yml
 .DS_Store
 Thumbs.db
 
-############################
-# Misc
-############################
-coverage/
-dist/
-build/
