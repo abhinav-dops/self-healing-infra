@@ -1,22 +1,66 @@
+############################
+# Terraform
+############################
 .terraform/
 *.tfstate
 *.tfstate.*
 terraform.tfvars
+terraform.tfvars.json
 .crash.log
 terraform.lock.hcl
+.override.tf
+.override.tf.json
+*_override.tf
+*_override.tf.json
+
+############################
+# Secrets / Keys
+############################
 *.pem
 *.key
 *.pub
 .env
+.env.*
+
+############################
+# Python
+############################
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.Python
+venv/
+.venv/
+
+############################
+# Logs
+############################
 *.log
+logs/
+
+############################
+# Docker
+############################
 docker-compose.override.yml
-.DS_Store
-Thumbs.db
+
+############################
+# IDE / Editor
+############################
 .vscode/
 .idea/
-logs/
-*.log
+*.swp
+*.swo
+
+############################
+# OS files
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Misc
+############################
+coverage/
+dist/
+build/
