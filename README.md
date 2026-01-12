@@ -10,6 +10,23 @@ This project focuses on **infrastructure resilience**, **event-driven automation
 
 ---
 
+## Problem Statement
+
+In cloud environments, virtual machines and applications can become unstable due to high CPU usage, system-level failures, or unexpected runtime issues.  
+In many setups, detecting these failures and manually intervening to recover services leads to increased downtime and delayed incident response.
+
+This project addresses the challenge of **automatically detecting EC2 instance failures and remediating them without manual intervention**, while ensuring the application recovers correctly after the infrastructure heals.
+
+---
+
+## Solution Overview
+
+This project implements an **event-driven self-healing infrastructure** on AWS using Terraform.
+
+The solution continuously monitors EC2 instance health and performance using CloudWatch alarms. When a critical condition such as high CPU utilization or system status check failure is detected, an automated recovery workflow is triggered.
+
+---
+
 ## Architecture
 
 **Flow:**
@@ -143,6 +160,7 @@ Screenshots are available in the [`screenshots/`](./screenshots) directory.
 ```test
 - terraform destroy
 ```
+
 
 
 
